@@ -3,7 +3,7 @@ package noise
 import "math"
 
 func Dot3(g Grad3, x, y, z float64) float64 {
-	return g.x*x + g.y*y
+	return g.x*x + g.y*y + g.z*z
 }
 
 func Noise3d(xin, yin, zin float64) float64 {
