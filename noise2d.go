@@ -49,3 +49,20 @@ func Noise2d(xin, yin float64) float64 {
 
 	return 70.0 * (n[0] + n[1] + n[2])
 }
+
+func OctaveNoise2d(xin, yin float64, octaves int, p, scale float64) float64 {
+
+	total := 0.0
+	freq := scale
+	amp := 1.0
+	maxAmp := 0.0
+
+	for i := 0; i < octaves; i++ {
+		total += Noise2d(xin*freq, yin*freq) * amp
+		freq *= 2.0
+		maxAmp += amp
+		amp *= p
+	}
+
+	return total / maxAmp
+}

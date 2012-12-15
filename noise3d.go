@@ -72,3 +72,20 @@ func Noise3d(xin, yin, zin float64) float64 {
 
 	return 32.0 * (n[0] + n[1] + n[2] + n[3])
 }
+
+func OctaveNoise3d(xin, yin, zin float64, octaves int, p, scale float64) float64 {
+
+	total := 0.0
+	freq := scale
+	amp := 1.0
+	maxAmp := 0.0
+
+	for i := 0; i < octaves; i++ {
+		total += Noise3d(xin*freq, yin*freq, zin*freq) * amp
+		freq *= 2.0
+		maxAmp += amp
+		amp *= p
+	}
+
+	return total / maxAmp
+}
