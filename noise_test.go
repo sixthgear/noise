@@ -40,7 +40,12 @@ func TestNoisePNG(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 
-	width, height, depth := 256, 256, 128
+	width, height, depth := 256, 256, 64
+	colors := 256
+	octaves := 4
+	persistence := 0.25
+	scale := 1.0 / 64
+
 	r := image.Rect(0, 0, width, height)
 	i := image.NewRGBA(r)
 
@@ -50,9 +55,9 @@ func TestNoisePNG(t *testing.T) {
 				xx := float64(x)
 				yy := float64(y)
 				zz := float64(z)
-				n := OctaveNoise3d(xx, yy, zz, 4, 0.6, 1.0/16)
+				n := OctaveNoise3d(xx, yy, zz, octaves, persistence, scale)
 				n = (n + 1.0) * 0.5
-				ni := uint8(n * 255)
+				ni := uint8(n*float64(colors)) * uint8(256/colors)
 				c := color.RGBA{ni, ni, ni, 255}
 				i.SetRGBA(x, y, c)
 			}

@@ -32,7 +32,6 @@ func Noise3d(xin, yin, zin float64) float64 {
 		} else {
 			i[1], j[1], k[1], i[2], j[2], k[2] = 0, 0, 1, 1, 0, 1
 		}
-
 	} else {
 		if y[0] < z[0] {
 			i[1], j[1], k[1], i[2], j[2], k[2] = 0, 0, 1, 0, 1, 1
@@ -46,12 +45,12 @@ func Noise3d(xin, yin, zin float64) float64 {
 	x[1] = x[0] - float64(i[1]) + G3
 	y[1] = y[0] - float64(j[1]) + G3
 	z[1] = z[0] - float64(k[1]) + G3
-	x[2] = x[0] - float64(i[2]) + G3*2
-	y[2] = y[0] - float64(j[2]) + G3*2
-	z[2] = z[0] - float64(k[2]) + G3*2
-	x[3] = x[0] - 1.0 + G3*3
-	y[3] = y[0] - 1.0 + G3*3
-	z[3] = z[0] - 1.0 + G3*3
+	x[2] = x[0] - float64(i[2]) + 2.0*G3
+	y[2] = y[0] - float64(j[2]) + 2.0*G3
+	z[2] = z[0] - float64(k[2]) + 2.0*G3
+	x[3] = x[0] - 1.0 + 3.0*G3
+	y[3] = y[0] - 1.0 + 3.0*G3
+	z[3] = z[0] - 1.0 + 3.0*G3
 
 	ii := i[0] & 255
 	jj := j[0] & 255
